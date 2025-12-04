@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.commands;
+package fr.kainovaii.guardian.bot.commands;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;

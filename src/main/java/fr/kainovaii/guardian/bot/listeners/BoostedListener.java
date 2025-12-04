@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.listeners;
+package fr.kainovaii.guardian.bot.listeners;
 
 import fr.kainovaii.guardian.core.Loader;
 import net.dv8tion.jda.api.EmbedBuilder;

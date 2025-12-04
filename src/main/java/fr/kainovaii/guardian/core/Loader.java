@@ -1,11 +1,11 @@
 package fr.kainovaii.guardian.core;
 
-import fr.kainovaii.guardian.commands.Command;
+import fr.kainovaii.guardian.bot.commands.Command;
 import fr.kainovaii.guardian.domain.user.UserRepository;
-import fr.kainovaii.guardian.listeners.BoostedListener;
-import fr.kainovaii.guardian.listeners.SlashCommandListener;
-import fr.kainovaii.guardian.listeners.WelcomeListener;
-import fr.kainovaii.guardian.listeners.WordScannerListener;
+import fr.kainovaii.guardian.bot.listeners.BoostedListener;
+import fr.kainovaii.guardian.bot.listeners.SlashCommandListener;
+import fr.kainovaii.guardian.bot.listeners.WelcomeListener;
+import fr.kainovaii.guardian.bot.listeners.WordScannerListener;
 import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
@@ -71,7 +71,7 @@ public class Loader
 
     private List<Command> loadCommands()
     {
-        Reflections reflections = new Reflections("fr.kainovaii.guardian.commands");
+        Reflections reflections = new Reflections("fr.kainovaii.guardian.bot.commands");
         Set<Class<? extends Command>> commandClasses = reflections.getSubTypesOf(Command.class);
         return commandClasses.stream()
             .map(cls -> {

@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.listeners;
+package fr.kainovaii.guardian.bot.listeners;
 
 import fr.kainovaii.guardian.domain.alert.AlertRepository;
 import fr.kainovaii.guardian.domain.penalty.PenaltyRepository;
