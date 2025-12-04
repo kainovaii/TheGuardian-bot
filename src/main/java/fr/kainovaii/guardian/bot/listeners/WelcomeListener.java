@@ -1,6 +1,6 @@
 package fr.kainovaii.guardian.bot.listeners;
 
-import fr.kainovaii.guardian.core.Loader;
+import fr.kainovaii.guardian.core.Guardian;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
@@ -15,7 +15,7 @@ public class WelcomeListener extends ListenerAdapter
     public void onGuildMemberJoin(GuildMemberJoinEvent event)
     {
         Member member = event.getMember();
-        TextChannel channel = event.getGuild().getTextChannelById(Loader.getChannel());
+        TextChannel channel = event.getGuild().getTextChannelById(Guardian.getChannel());
         if (channel == null) return;
 
         EmbedBuilder embed = new EmbedBuilder();

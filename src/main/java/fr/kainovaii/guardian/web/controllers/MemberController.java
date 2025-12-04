@@ -5,7 +5,7 @@ import fr.kainovaii.guardian.domain.alert.AlertRepository;
 import fr.kainovaii.guardian.domain.penalty.Penalty;
 import fr.kainovaii.guardian.domain.penalty.PenaltyRepository;
 import fr.kainovaii.guardian.core.database.DB;
-import fr.kainovaii.guardian.core.Loader;
+import fr.kainovaii.guardian.core.Guardian;
 import fr.kainovaii.guardian.core.web.controller.BaseController;
 import fr.kainovaii.guardian.core.web.controller.Controller;
 import net.dv8tion.jda.api.entities.Guild;
@@ -48,9 +48,9 @@ public class MemberController extends BaseController
     private Object members(Request req, Response res)
     {
         requireLogin(req, res);
-        Loader.preloadMembersCache();
+        Guardian.preloadMembersCache();
 
-        List<Role> roles = Loader.getGuild().getRoles();
+        List<Role> roles = Guardian.getGuild().getRoles();
         List<Map<String, Object>> roleData = roles.stream().map(role -> {
             Map<String, Object> data = new HashMap<>();
             data.put("id", role.getId());
@@ -59,7 +59,7 @@ public class MemberController extends BaseController
             return data;
         }).collect(Collectors.toList());
 
-        List<Map<String, Object>> memberData = Loader.getMemberCache();
+        List<Map<String, Object>> memberData = Guardian.getMemberCache();
         return render(req,"member.html", Map.of("members", memberData, "roles", roleData));
     }
 
@@ -67,7 +67,7 @@ public class MemberController extends BaseController
     {
         requireLogin(req, res);
         String roleName = req.params("role");
-        List<Map<String, Object>> filtered = Loader.getMemberCache().stream()
+        List<Map<String, Object>> filtered = Guardian.getMemberCache().stream()
             .filter(m -> {
                 List<String> roles = (List<String>) m.get("roles");
                 return roles.contains(roleName);
@@ -82,7 +82,7 @@ public class MemberController extends BaseController
         requireLogin(req, res);
         String memberId = req.params("id");
 
-        Map<String, Object> memberData = Loader.getMemberCache().stream()
+        Map<String, Object> memberData = Guardian.getMemberCache().stream()
             .filter(m -> m.get("id").equals(memberId))
             .findFirst()
             .orElse(null);
@@ -104,7 +104,7 @@ public class MemberController extends BaseController
         requireLogin(req, res);
         Session session = req.session(true);
         String memberId = req.params("id");
-        Guild guild = Loader.getGuild();
+        Guild guild = Guardian.getGuild();
         if (guild == null) return "Guild introuvable !";
 
         LocalDateTime now = LocalDateTime.now();
@@ -127,7 +127,7 @@ public class MemberController extends BaseController
 
     private List<Map<String, Object>> getAllRole()
     {
-        List<Role> roles_list = Loader.getGuild().getRoles();
+        List<Role> roles_list = Guardian.getGuild().getRoles();
         List<Map<String, Object>> roleData = roles_list.stream().map(role ->
         {
             Map<String, Object> data = new HashMap<>();
@@ -145,7 +145,7 @@ public class MemberController extends BaseController
         String memberId = req.params("id");
         String penaltyType = req.queryParams("penalty_type");
         String penaltyAction = req.queryParams("action");
-        Guild guild = Loader.getGuild();
+        Guild guild = Guardian.getGuild();
 
         if (!"mute".equalsIgnoreCase(penaltyType)) {
             return null;

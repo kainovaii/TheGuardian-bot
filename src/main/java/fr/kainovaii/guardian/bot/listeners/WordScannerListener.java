@@ -4,7 +4,7 @@ import fr.kainovaii.guardian.core.config.ConfigManager;
 import fr.kainovaii.guardian.core.config.PerspectiveConfig;
 import fr.kainovaii.guardian.domain.alert.AlertRepository;
 import fr.kainovaii.guardian.domain.penalty.PenaltyRepository;
-import fr.kainovaii.guardian.core.Loader;
+import fr.kainovaii.guardian.core.Guardian;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
@@ -101,7 +101,7 @@ public class WordScannerListener extends ListenerAdapter
     {
         if (event.getAuthor().isBot()) return;
 
-        TextChannel alertChannel = event.getGuild().getTextChannelById(Loader.getChannelModo());
+        TextChannel alertChannel = event.getGuild().getTextChannelById(Guardian.getChannelModo());
         if (alertChannel == null) return;
 
         Member member = event.getMember();

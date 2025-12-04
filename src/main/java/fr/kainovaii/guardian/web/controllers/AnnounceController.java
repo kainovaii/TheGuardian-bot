@@ -2,7 +2,7 @@ package fr.kainovaii.guardian.web.controllers;
 
 import static spark.Spark.*;
 
-import fr.kainovaii.guardian.core.Loader;
+import fr.kainovaii.guardian.core.Guardian;
 import fr.kainovaii.guardian.core.web.controller.BaseController;
 import fr.kainovaii.guardian.core.web.controller.Controller;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
@@ -32,7 +32,7 @@ public class AnnounceController extends BaseController
             return "❌ Message vide.";
         }
 
-        TextChannel channel = Loader.getJda().getTextChannelById(channelId);
+        TextChannel channel = Guardian.getJda().getTextChannelById(channelId);
         if (channel == null) {
             return "❌ Salon introuvable.";
         }

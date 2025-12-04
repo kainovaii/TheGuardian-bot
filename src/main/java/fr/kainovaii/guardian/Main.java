@@ -1,19 +1,19 @@
 package fr.kainovaii.guardian;
 
 import fr.kainovaii.guardian.core.config.ConfigManager;
-import fr.kainovaii.guardian.core.Loader;
+import fr.kainovaii.guardian.core.Guardian;
 
 public class Main
 {
     public static void main(String[] args) throws Exception
     {
-        Loader loader = new Loader();
+        Guardian app = new Guardian();
         ConfigManager.load();
-        loader.registerMotd();
-        loader.connectDatabase();
-        loader.loadConfigAndEnv();
-        loader.initUser();
-        loader.initBot();
-        loader.startWebServer();
+        app.registerMotd();
+        app.connectDatabase();
+        app.loadConfigAndEnv();
+        app.initUser();
+        app.initBot();
+        app.startWebServer();
     }
 }

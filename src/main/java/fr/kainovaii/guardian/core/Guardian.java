@@ -24,10 +24,10 @@ import java.util.*;
         import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class Loader
+public class Guardian
 {
     public final static Logger LOGGER = Logger.getLogger("Guardian");
-    private final SQLite sqlite = new SQLite(Loader.LOGGER);
+    private final SQLite sqlite = new SQLite(Guardian.LOGGER);
     private static String token;
     private static String guildId;
     private static String channelId;
@@ -84,7 +84,7 @@ public class Loader
                 try {
                     return cls.getDeclaredConstructor().newInstance();
                 } catch (Exception e) {
-                    Loader.LOGGER.severe("Impossible d’instancier la commande : " + cls.getName());
+                    Guardian.LOGGER.severe("Impossible d’instancier la commande : " + cls.getName());
                     e.printStackTrace();
                     return null;
                 }
