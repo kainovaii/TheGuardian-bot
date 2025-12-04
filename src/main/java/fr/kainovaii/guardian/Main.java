@@ -1,6 +1,5 @@
 package fr.kainovaii.guardian;
 
-import fr.kainovaii.guardian.utils.DB;
 import fr.kainovaii.guardian.utils.Loader;
 
 public class Main
