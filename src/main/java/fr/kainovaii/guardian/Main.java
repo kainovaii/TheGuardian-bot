@@ -1,5 +1,6 @@
 package fr.kainovaii.guardian;
 
+import fr.kainovaii.guardian.core.ConfigManager;
 import fr.kainovaii.guardian.core.Loader;
 
 public class Main
@@ -7,6 +8,7 @@ public class Main
     public static void main(String[] args) throws Exception
     {
         Loader loader = new Loader();
+        ConfigManager.load();
         loader.registerMotd();
         loader.connectDatabase();
         loader.loadConfigAndEnv();

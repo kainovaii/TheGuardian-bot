@@ -1,5 +1,7 @@
 package fr.kainovaii.guardian.bot.listeners;
 
+import fr.kainovaii.guardian.core.ConfigManager;
+import fr.kainovaii.guardian.core.PerspectiveConfig;
 import fr.kainovaii.guardian.domain.alert.AlertRepository;
 import fr.kainovaii.guardian.domain.penalty.PenaltyRepository;
 import fr.kainovaii.guardian.core.Loader;
@@ -52,27 +54,26 @@ public class WordScannerListener extends ListenerAdapter
 
     private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
     private final String PERSPECTIVE_API_KEY;
-    private final double TOXICITY_THRESHOLD = 0.5;
     private final BlockingQueue<MessageData> queue = new LinkedBlockingQueue<>();
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public WordScannerListener(String token)
     {
+        PerspectiveConfig config = ConfigManager.getPerspective();
         PERSPECTIVE_API_KEY = token;
         executor.submit(() -> {
             while (true) {
                 try {
                     MessageData data = queue.take();
                     double toxicity = getToxicityScore(data.message);
-                    if (toxicity >= TOXICITY_THRESHOLD)
+                    if (toxicity >= config.getAlertThreshold())
                     {
                         AlertRepository alertRepository = new AlertRepository();
                         alertRepository.create(data.member.getId(), data.member.getEffectiveName(), data.word, data.message, data.channel.getName(), data.timestamp, toxicity);
                         sendAlert(data.member, data.channel, data.word, data.message,  data.channel.getName(), data.timestamp, data.member.getJDA().getSelfUser().getAvatarUrl(), toxicity);
 
-                        if (toxicity >= 0.8)
+                        if (toxicity >= config.getPenaltyThreshold())
                         {
-                            // Mute member and Add penalty
                             Role mutedRole = data.channel.getGuild().getRolesByName("Muted", true).stream().findFirst().orElse(null);
                             if (mutedRole != null && !data.member.getRoles().contains(mutedRole)) {
                                 data.channel.getGuild().addRoleToMember(data.member, mutedRole).queue(

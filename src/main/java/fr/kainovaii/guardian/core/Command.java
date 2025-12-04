@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.bot.commands;
+package fr.kainovaii.guardian.core;
 
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;

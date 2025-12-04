@@ -1,6 +1,6 @@
 package fr.kainovaii.guardian.bot.listeners;
 
-import fr.kainovaii.guardian.bot.commands.Command;
+import fr.kainovaii.guardian.core.Command;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 

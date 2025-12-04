@@ -11,5 +11,5 @@ public class PerspectiveConfig
     }
 
     public double getAlertThreshold() { return alertThreshold; }
-    public double getMuteThreshold() { return muteThreshold; }
+    public double getPenaltyThreshold() { return muteThreshold; }
 }

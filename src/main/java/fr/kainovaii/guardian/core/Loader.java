@@ -1,6 +1,5 @@
 package fr.kainovaii.guardian.core;
 
-import fr.kainovaii.guardian.bot.commands.Command;
 import fr.kainovaii.guardian.domain.user.UserRepository;
 import fr.kainovaii.guardian.bot.listeners.BoostedListener;
 import fr.kainovaii.guardian.bot.listeners.SlashCommandListener;
@@ -40,7 +39,7 @@ public class Loader
 
     public void loadConfigAndEnv()
     {
-        new ConfigLoader().load();
+        new ConfigManager().load();
         EnvLoader env = new EnvLoader();
         env.load();
         String envType = env.get("ENVIRONMENT");
@@ -146,6 +145,8 @@ public class Loader
     public void registerMotd()
     {
         EnvLoader env = new EnvLoader();
+        PerspectiveConfig config = ConfigManager.getPerspective();
+
         env.load();
         final String RESET = "\u001B[0m";
         final String CYAN = "\u001B[36m";
@@ -156,13 +157,14 @@ public class Loader
         System.out.println(CYAN + "+--------------------------------------+" + RESET);
         System.out.println(CYAN + "|          Guardian Bot 1.0            |" + RESET);
         System.out.println(CYAN + "+--------------------------------------+" + RESET);
-        System.out.println(GREEN + "| Développeur       : KainoVaii        |" + RESET);
+        System.out.println(GREEN + "| Developpeur       : KainoVaii        |" + RESET);
         System.out.println(GREEN + "| Version           : 1.0              |" + RESET);
         System.out.println(GREEN + "| Environnement     : " + env.get("ENVIRONMENT") + "              |" + RESET);
         System.out.println(YELLOW + "| Discord Guild     : " + guildId + "             |" + RESET);
         System.out.println(YELLOW + "| Channel principal : " + channelId + "             |" + RESET);
-        System.out.println(YELLOW + "| Channel modération: " + channelModoId + "             |" + RESET);
-        System.out.println(MAGENTA + "| Web Port          : " +  env.get("PORT_WEB") + "             |" + RESET);
+        System.out.println(YELLOW + "| Channel moderation: " + channelModoId + "             |" + RESET);
+        System.out.println(MAGENTA + "| Threshold alert           : " +  config.getAlertThreshold() + "      |" + RESET);
+        System.out.println(MAGENTA + "| Threshold penalty         : " +  config.getPenaltyThreshold() + "      |" + RESET);
         System.out.println(CYAN + "+--------------------------------------+" + RESET);
         System.out.println(CYAN + "|      Chargement des modules...       |" + RESET);
         System.out.println(CYAN + "+--------------------------------------+" + RESET);
