@@ -1,5 +1,6 @@
 package fr.kainovaii.guardian.web.controllers;
 
+import fr.kainovaii.guardian.core.Guardian;
 import fr.kainovaii.guardian.core.web.controller.BaseController;
 import fr.kainovaii.guardian.core.web.controller.Controller;
 import spark.Request;
@@ -20,7 +21,10 @@ public class HomeController extends BaseController
     private Object homepage(Request req, Response res)
     {
         requireLogin(req, res);
-        return render(req,"home.html", Map.of());
+
+        int memberCount = Guardian.getMemberCache().size();
+
+        return render(req,"home.html", Map.of("member_count", memberCount));
     }
 
 }

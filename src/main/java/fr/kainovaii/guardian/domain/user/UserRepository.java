@@ -11,6 +11,13 @@ public class UserRepository
         user.saveIt();
     }
 
+    public boolean updateByUsername(String username, String newUsername, String newPassword)
+    {
+        User user = this.findByUsername(username);
+        user.set("username", newUsername, "password", newPassword);
+        return user.saveIt();
+    }
+
     public static boolean userExist(String username)
     {
         return User.findFirst("username = ?", username) != null;

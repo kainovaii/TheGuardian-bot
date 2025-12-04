@@ -35,7 +35,7 @@ public class LoginController extends BaseController
     private Object front(Request req, Response res)
     {
         if (!isLogged(req)) {
-            return render(req,"login.html", Map.of("title", "Bot"));
+            return render(req,"account/login.html", Map.of("title", "Bot"));
         } else {
             res.redirect("/");
         }
