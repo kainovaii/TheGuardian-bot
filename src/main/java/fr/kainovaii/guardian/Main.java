@@ -1,6 +1,6 @@
 package fr.kainovaii.guardian;
 
-import fr.kainovaii.guardian.core.ConfigManager;
+import fr.kainovaii.guardian.core.config.ConfigManager;
 import fr.kainovaii.guardian.core.Loader;
 
 public class Main

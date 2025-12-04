@@ -2,9 +2,9 @@ package fr.kainovaii.guardian.web.controllers;
 
 import fr.kainovaii.guardian.domain.user.User;
 import fr.kainovaii.guardian.domain.user.UserRepository;
-import fr.kainovaii.guardian.core.DB;
-import fr.kainovaii.guardian.core.BaseController;
-import fr.kainovaii.guardian.core.Controller;
+import fr.kainovaii.guardian.core.database.DB;
+import fr.kainovaii.guardian.core.web.controller.BaseController;
+import fr.kainovaii.guardian.core.web.controller.Controller;
 import org.mindrot.jbcrypt.BCrypt;
 import spark.Request;
 import spark.Response;

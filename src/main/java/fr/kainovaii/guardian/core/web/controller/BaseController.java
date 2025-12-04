@@ -1,5 +1,6 @@
-package fr.kainovaii.guardian.core;
+package fr.kainovaii.guardian.core.web.controller;
 
+import fr.kainovaii.guardian.core.web.WebRenderer;
 import spark.Request;
 import spark.Response;
 import spark.Session;
@@ -34,7 +35,7 @@ public class BaseController extends WebRenderer
         session.attribute("flash_" + key, message);
     }
 
-    protected static Map<String, String> collectFlashes(Request req)
+    public static Map<String, String> collectFlashes(Request req)
     {
         Session session = req.session(false);
         if (session == null) return Map.of();

@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.core;
+package fr.kainovaii.guardian.core.web.controller;
 
 import org.reflections.Reflections;
 

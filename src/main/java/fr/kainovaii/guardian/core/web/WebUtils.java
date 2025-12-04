@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.core;
+package fr.kainovaii.guardian.core.web;
 
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;

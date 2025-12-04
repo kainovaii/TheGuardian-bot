@@ -1,5 +1,6 @@
-package fr.kainovaii.guardian.core;
+package fr.kainovaii.guardian.core.database;
 
+import fr.kainovaii.guardian.core.Loader;
 import org.javalite.activejdbc.Base;
 
 import java.util.concurrent.Callable;

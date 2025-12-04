@@ -1,7 +1,7 @@
 package fr.kainovaii.guardian.bot.listeners;
 
-import fr.kainovaii.guardian.core.ConfigManager;
-import fr.kainovaii.guardian.core.PerspectiveConfig;
+import fr.kainovaii.guardian.core.config.ConfigManager;
+import fr.kainovaii.guardian.core.config.PerspectiveConfig;
 import fr.kainovaii.guardian.domain.alert.AlertRepository;
 import fr.kainovaii.guardian.domain.penalty.PenaltyRepository;
 import fr.kainovaii.guardian.core.Loader;

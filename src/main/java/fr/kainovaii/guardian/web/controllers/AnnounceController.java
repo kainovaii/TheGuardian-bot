@@ -3,8 +3,8 @@ package fr.kainovaii.guardian.web.controllers;
 import static spark.Spark.*;
 
 import fr.kainovaii.guardian.core.Loader;
-import fr.kainovaii.guardian.core.BaseController;
-import fr.kainovaii.guardian.core.Controller;
+import fr.kainovaii.guardian.core.web.controller.BaseController;
+import fr.kainovaii.guardian.core.web.controller.Controller;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import spark.Request;
 import spark.Response;

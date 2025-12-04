@@ -1,5 +1,6 @@
-package fr.kainovaii.guardian.core;
+package fr.kainovaii.guardian.core.web;
 
+import fr.kainovaii.guardian.core.web.controller.BaseController;
 import spark.Request;
 import java.io.IOException;
 import java.io.InputStream;

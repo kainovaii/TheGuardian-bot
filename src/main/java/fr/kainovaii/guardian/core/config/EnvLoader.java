@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.core;
+package fr.kainovaii.guardian.core.config;
 
 import io.github.cdimascio.dotenv.Dotenv;
 

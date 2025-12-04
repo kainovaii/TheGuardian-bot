@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.core;
+package fr.kainovaii.guardian.core.config;
 
 import org.yaml.snakeyaml.Yaml;
 import java.io.InputStream;

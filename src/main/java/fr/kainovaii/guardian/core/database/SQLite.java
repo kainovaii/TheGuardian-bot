@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.core;
+package fr.kainovaii.guardian.core.database;
 
 import org.javalite.activejdbc.Base;
 
@@ -11,7 +11,7 @@ public class SQLite
     private final File dataFolder;
     private final Logger logger;
 
-    SQLite(Logger logger) {
+    public SQLite(Logger logger) {
         this.logger = logger;
         this.dataFolder = new File("Guardian");
         if (!dataFolder.exists()) dataFolder.mkdirs();
