@@ -1,0 +1,14 @@
+# ==========================
+# Users
+# ==========================
+users:
+  - username: "admin"
+    password: "$2a$12$zMiUnCJHn5wKLpBpO3dWXeP1UsrZu//BDe.Mv0jjNYp1A9jmv91Hi"
+    role: "ADMIN"
+
+# ==========================
+# Perspective config
+# ==========================
+perspective:
+  alert_threshold: 0.5
+  mute_threshold: 0.8

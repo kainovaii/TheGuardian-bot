@@ -1,0 +1,1 @@
+WebComponent('user-details', 'user_details');

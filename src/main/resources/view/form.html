@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Publier une annonce Discord</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Publier une annonce</h1>
+    <form method="post" action="/announce">
+        <div class="mb-3">
+            <label for="message" class="form-label">Channel:</label>
+            <select name="channel" class="form-select">
+                <option value="1433490360532729966">Kassos | Annonce</option>
+                <option value="1415625406953820211">Kassos | Discussion</option>
+                <option value="1434212657036136750">Kassos | Test bot</option>
+                <option value="1406393806579957822">Dev | Commandes</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Message:</label>
+            <textarea required class="form-control" id="message" name="message" rows="12" placeholder="Tape ton annonce ici..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-discord w-100">Submit</button>
+    </form>
+</div>
+</body>
+</html>
