@@ -1,0 +1,7 @@
+package fr.kainovaii.guardian.web.core;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Controller {}
