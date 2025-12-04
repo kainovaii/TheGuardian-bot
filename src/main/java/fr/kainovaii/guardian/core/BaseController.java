@@ -1,12 +1,9 @@
-package fr.kainovaii.guardian.web.core;
+package fr.kainovaii.guardian.core;
 
 import spark.Request;
 import spark.Response;
 import spark.Session;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,7 +1,6 @@
 package fr.kainovaii.guardian.domain.penalty;
 
-import fr.kainovaii.guardian.utils.DB;
-import fr.kainovaii.guardian.utils.Loader;
+import fr.kainovaii.guardian.core.DB;
 import org.javalite.activejdbc.LazyList;
 
 public class PenaltyRepository

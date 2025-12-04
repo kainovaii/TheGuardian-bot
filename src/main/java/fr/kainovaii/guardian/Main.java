@@ -1,6 +1,6 @@
 package fr.kainovaii.guardian;
 
-import fr.kainovaii.guardian.utils.Loader;
+import fr.kainovaii.guardian.core.Loader;
 
 public class Main
 {

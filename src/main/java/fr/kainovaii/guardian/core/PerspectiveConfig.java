@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.utils;
+package fr.kainovaii.guardian.core;
 
 public class PerspectiveConfig
 {

@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.utils;
+package fr.kainovaii.guardian.core;
 
 import org.yaml.snakeyaml.Yaml;
 
@@ -7,10 +7,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ConfigLoader
 {

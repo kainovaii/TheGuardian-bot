@@ -1,8 +1,7 @@
 package fr.kainovaii.guardian.web.controllers;
 
-import fr.kainovaii.guardian.web.core.BaseController;
-import fr.kainovaii.guardian.web.core.Controller;
-import fr.kainovaii.guardian.web.core.WebRenderer;
+import fr.kainovaii.guardian.core.BaseController;
+import fr.kainovaii.guardian.core.WebRenderer;
 import spark.Request;
 import spark.Session;
 

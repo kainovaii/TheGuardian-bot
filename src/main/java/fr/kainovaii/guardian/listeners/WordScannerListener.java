@@ -2,7 +2,7 @@ package fr.kainovaii.guardian.listeners;
 
 import fr.kainovaii.guardian.domain.alert.AlertRepository;
 import fr.kainovaii.guardian.domain.penalty.PenaltyRepository;
-import fr.kainovaii.guardian.utils.Loader;
+import fr.kainovaii.guardian.core.Loader;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;

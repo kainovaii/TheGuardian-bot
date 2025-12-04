@@ -1,7 +1,5 @@
 package fr.kainovaii.guardian.domain.user;
 
-import fr.kainovaii.guardian.utils.DB;
-import fr.kainovaii.guardian.utils.Loader;
 import org.javalite.activejdbc.LazyList;
 
 public class UserRepository

@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.web.core;
+package fr.kainovaii.guardian.core;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

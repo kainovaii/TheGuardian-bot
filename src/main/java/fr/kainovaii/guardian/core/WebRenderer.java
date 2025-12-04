@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.web.core;
+package fr.kainovaii.guardian.core;
 
 import spark.Request;
 import java.io.IOException;

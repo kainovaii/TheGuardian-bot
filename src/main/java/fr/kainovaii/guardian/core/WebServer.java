@@ -1,11 +1,8 @@
-package fr.kainovaii.guardian.web.core;
+package fr.kainovaii.guardian.core;
 
 import static spark.Spark.*;
 
-import fr.kainovaii.guardian.Main;
-import fr.kainovaii.guardian.utils.Loader;
 import fr.kainovaii.guardian.web.controllers.GlobalAdviceController;
-import spark.Request;
 
 public class WebServer
 {

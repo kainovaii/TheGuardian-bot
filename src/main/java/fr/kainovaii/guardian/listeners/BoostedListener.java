@@ -1,7 +1,6 @@
 package fr.kainovaii.guardian.listeners;
 
-import fr.kainovaii.guardian.Main;
-import fr.kainovaii.guardian.utils.Loader;
+import fr.kainovaii.guardian.core.Loader;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;

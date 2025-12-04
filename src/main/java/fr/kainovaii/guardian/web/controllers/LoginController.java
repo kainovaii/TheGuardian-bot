@@ -2,20 +2,15 @@ package fr.kainovaii.guardian.web.controllers;
 
 import fr.kainovaii.guardian.domain.user.User;
 import fr.kainovaii.guardian.domain.user.UserRepository;
-import fr.kainovaii.guardian.utils.ConfigLoader;
-import fr.kainovaii.guardian.utils.DB;
-import fr.kainovaii.guardian.web.core.BaseController;
-import fr.kainovaii.guardian.web.core.Controller;
-import fr.kainovaii.guardian.utils.PerspectiveConfig;
+import fr.kainovaii.guardian.core.DB;
+import fr.kainovaii.guardian.core.BaseController;
+import fr.kainovaii.guardian.core.Controller;
 import org.mindrot.jbcrypt.BCrypt;
 import spark.Request;
 import spark.Response;
 import spark.Session;
 
 import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
