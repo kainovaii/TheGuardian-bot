@@ -50,4 +50,10 @@ public class BaseController extends WebRenderer
         }
         return flashes;
     }
+
+    protected void redirectWithFlash(Request req, Response res, String type, String message, String location)
+    {
+        setFlash(req, type, message);
+        res.redirect(location);
+    }
 }

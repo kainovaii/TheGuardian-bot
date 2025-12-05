@@ -1,5 +1,6 @@
 package fr.kainovaii.guardian.http.controllers;
 
+import fr.kainovaii.guardian.core.helper.MemberHelper;
 import fr.kainovaii.guardian.domain.alert.Alert;
 import fr.kainovaii.guardian.domain.alert.AlertRepository;
 import fr.kainovaii.guardian.domain.penalty.Penalty;
@@ -20,20 +21,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
+import static spark.Spark.*;
 
 @Controller
 public class MemberController extends BaseController
 {
-    private final PenaltyRepository penaltyRepository;
-    private final AlertRepository alertRepository;
+    private final MemberHelper memberHelper;
 
     public MemberController()
     {
         initRoutes();
-        this.penaltyRepository = new PenaltyRepository();
-        this.alertRepository = new AlertRepository();
+        this.memberHelper = new MemberHelper();
     }
 
     private void initRoutes()
@@ -48,49 +46,39 @@ public class MemberController extends BaseController
     private Object members(Request req, Response res)
     {
         requireLogin(req, res);
-        Guardian.preloadMembersCache();
 
-        List<Role> roles = Guardian.getGuild().getRoles();
-        List<Map<String, Object>> roleData = roles.stream().map(role -> {
-            Map<String, Object> data = new HashMap<>();
-            data.put("id", role.getId());
-            data.put("name", role.getName());
-            data.put("color", role.getColor() != null ? role.getColor().getRGB() : null);
-            return data;
-        }).collect(Collectors.toList());
+        List<Map<String, Object>> memberData = memberHelper.getAllMembers();
+        List<Map<String, Object>> roleData = memberHelper.getAllRoles();
 
-        List<Map<String, Object>> memberData = Guardian.getMemberCache();
-        return render(req,"member.html", Map.of("members", memberData, "roles", roleData));
+        return render(req, "member.html", Map.of(
+            "members", memberData,
+            "roles", roleData
+        ));
     }
 
     private Object membersByRole(Request req, Response res)
     {
         requireLogin(req, res);
+
         String roleName = req.params("role");
-        List<Map<String, Object>> filtered = Guardian.getMemberCache().stream()
-            .filter(m -> {
-                List<String> roles = (List<String>) m.get("roles");
-                return roles.contains(roleName);
-            })
-        .toList();
+        List<Map<String, Object>> filtered = memberHelper.getMembersByRole(roleName);
 
-        return render(req,"member.html", Map.of("members", filtered, "roles", getAllRole()));
+        return render(req, "member.html", Map.of(
+            "members", filtered,
+            "roles", memberHelper.getAllRoles()
+        ));
     }
-
     private Object memberProfile(Request req, Response res)
     {
         requireLogin(req, res);
+
         String memberId = req.params("id");
+        Map<String, Object> memberData = memberHelper.getMemberById(memberId);
 
-        Map<String, Object> memberData = Guardian.getMemberCache().stream()
-            .filter(m -> m.get("id").equals(memberId))
-            .findFirst()
-            .orElse(null);
+        if (memberData == null) redirectWithFlash(req, res, "error", "Membre introuvable", "/member");
 
-        if (memberData == null) return "Membre introuvable !";
-
-        List<Alert> memberAlerts = DB.withConnection(() -> alertRepository.findByMember(memberId).stream().toList());
-        List<Penalty> memberPenalties = DB.withConnection(() -> penaltyRepository.findByMember(memberId).stream().toList());
+        List<Alert> memberAlerts = memberHelper.getMemberAlerts(memberId);
+        List<Penalty> memberPenalties = memberHelper.getMemberPenalties(memberId);
 
         return render(req, "member_profile.html", Map.of(
             "member", memberData,
