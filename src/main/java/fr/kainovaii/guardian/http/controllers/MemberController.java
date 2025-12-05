@@ -46,6 +46,7 @@ public class MemberController extends BaseController
     private Object members(Request req, Response res)
     {
         requireLogin(req, res);
+        memberHelper.preloadMemberCache();
 
         List<Map<String, Object>> memberData = memberHelper.getAllMembers();
         List<Map<String, Object>> roleData = memberHelper.getAllRoles();
@@ -59,6 +60,7 @@ public class MemberController extends BaseController
     private Object membersByRole(Request req, Response res)
     {
         requireLogin(req, res);
+        memberHelper.preloadMemberCache();
 
         String roleName = req.params("role");
         List<Map<String, Object>> filtered = memberHelper.getMembersByRole(roleName);
@@ -68,9 +70,11 @@ public class MemberController extends BaseController
             "roles", memberHelper.getAllRoles()
         ));
     }
+
     private Object memberProfile(Request req, Response res)
     {
         requireLogin(req, res);
+        memberHelper.preloadMemberCache();
 
         String memberId = req.params("id");
         Map<String, Object> memberData = memberHelper.getMemberById(memberId);
