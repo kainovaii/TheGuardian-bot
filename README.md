@@ -1,11 +1,11 @@
 <p align="center">
     <br />
-    <img src="https://i.ibb.co/TMB4Jc1s/logo.png" width="30%">
+    <img src="https://raw.githubusercontent.com/kainovaii/TheGuardian-bot/refs/heads/main/src/main/resources/assets/img/logo.png" width="30%">
     <br />
 </p>
 <p align="center">
-    <img src="https://img.shields.io/badge/Version-1.0-blue.svg" />
-    <img style="margin-left: 10px;" src="https://img.shields.io/badge/License-MIT-blue.svg" />
+    <img src="https://img.shields.io/badge/Version-1.0-purple.svg" />
+    <img style="margin-left: 10px;" src="https://img.shields.io/badge/License-MIT-purple.svg" />
 </p>
 
 **TheGuardian-bot** est un bot Discord de modération écrit en **Java** utilisant [JDA](https://github.com/DV8FromTheWorld/JDA). Il est conçu pour aider les administrateurs et modérateurs à gérer un serveur Discord de manière efficace, avec des fonctionnalités de modération avancées et un tableau de bord web intégré.
