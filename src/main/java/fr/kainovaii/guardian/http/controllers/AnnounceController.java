@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.web.controllers;
+package fr.kainovaii.guardian.http.controllers;
 
 import static spark.Spark.*;
 

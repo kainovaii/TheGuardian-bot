@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.web.controllers;
+package fr.kainovaii.guardian.http.controllers;
 
 import fr.kainovaii.guardian.core.web.controller.BaseController;
 import fr.kainovaii.guardian.core.web.WebRenderer;

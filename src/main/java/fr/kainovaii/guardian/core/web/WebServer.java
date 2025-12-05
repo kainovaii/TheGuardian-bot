@@ -4,7 +4,7 @@ import static spark.Spark.*;
 
 import fr.kainovaii.guardian.core.Guardian;
 import fr.kainovaii.guardian.core.web.controller.ControllerLoader;
-import fr.kainovaii.guardian.web.controllers.GlobalAdviceController;
+import fr.kainovaii.guardian.http.controllers.GlobalAdviceController;
 
 public class WebServer
 {

@@ -1,4 +1,4 @@
-package fr.kainovaii.guardian.web.controllers;
+package fr.kainovaii.guardian.http.controllers;
 
 import fr.kainovaii.guardian.domain.user.User;
 import fr.kainovaii.guardian.domain.user.UserRepository;
