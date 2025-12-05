@@ -65,5 +65,5 @@ Le bot supporte plusieurs environnements (DEV / PROD) et charge automatiquement 
 git clone https://github.com/kainovaii/TheGuardian-bot.git
 cd TheGuardian-bot
 
-# Compiler le projet avec Maven
-mvn clean install
+# Compiler le projet
+./build.sh
