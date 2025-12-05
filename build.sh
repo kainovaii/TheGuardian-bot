@@ -12,6 +12,4 @@ echo ">>> Running JAR"
 
 clear
 
-cd target || exit 1
-
-java -jar Guardian-1.0-jar-with-dependencies.jar
+java -jar target/Guardian-1.0-jar-with-dependencies.jar

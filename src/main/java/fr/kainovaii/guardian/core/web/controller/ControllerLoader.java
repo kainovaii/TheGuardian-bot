@@ -10,7 +10,7 @@ public class ControllerLoader
 {
     public static void loadControllers()
     {
-        Reflections reflections = new Reflections("fr.kainovaii.guardian.web.controllers");
+        Reflections reflections = new Reflections("fr.kainovaii.guardian.http.controllers");
         Set<Class<?>> controllerClasses = reflections.getTypesAnnotatedWith(Controller.class);
         controllerClasses.stream()
             .map(cls -> {
