@@ -7,7 +7,7 @@ if [ "$TYPE" ]; then
         read -p "⚡️ Enter text: " TEXT
         git add --all
         git commit -m "🛠️ Fix ($TEXT)"
-        git push -u origin main
+        git push -u origin v1
         echo "⚡️ Task complete"
     fi
 
@@ -15,7 +15,7 @@ if [ "$TYPE" ]; then
         read -p "⚡️ Enter text: " TEXT
         git add --all
         git commit -m "📦️ Update ($TEXT)"
-        git push -u origin main
+        git push -u origin v1
         echo "⚡️ Task complete"
     fi
 
@@ -23,7 +23,7 @@ if [ "$TYPE" ]; then
         read -p "⚡️ Enter text: " TEXT
         git add --all
         git commit -m "🌐 Production"
-        git push -u origin main
+        git push -u origin v1
         echo "⚡️ Task complete"
     fi
 
@@ -32,7 +32,7 @@ if [ "$TYPE" ]; then
         git init
         git add --all
         git commit -m "🚀 Init"
-        git branch -M main
+        git branch -M v1
         git remote remove origin
         git remote add origin "$NAME"
         git push -u origin main
@@ -43,7 +43,7 @@ if [ "$TYPE" ]; then
         read -p "⚡️ Enter text: " TEXT
         git add --all
         git commit -m "👨‍💻 Dev ($TEXT)"
-        git push -u origin main
+        git push -u origin v1
         echo "⚡️ Task complete"
     fi
 else
