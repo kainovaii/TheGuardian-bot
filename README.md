@@ -1,6 +1,6 @@
 <p align="center">
     <br />
-    <img src="https://raw.githubusercontent.com/kainovaii/TheGuardian-bot/refs/heads/main/src/main/resources/assets/img/logo.png" width="30%">
+    <img src="https://raw.githubusercontent.com/kainovaii/TheGuardian-bot/refs/heads/main/src/main/resources/assets/img/logo_simple.png" width="30%">
     <br />
 </p>
 <p align="center">
