@@ -93,7 +93,8 @@ public class Guardian
             .collect(Collectors.toList());
     }
 
-    private void buildJDA(List<Command> commands) throws InterruptedException {
+    private void buildJDA(List<Command> commands) throws InterruptedException
+    {
         JDABuilder builder = JDABuilder.createDefault(token,
                 GatewayIntent.GUILD_MEMBERS,
                 GatewayIntent.GUILD_MESSAGES,
