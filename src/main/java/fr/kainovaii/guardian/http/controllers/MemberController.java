@@ -27,11 +27,13 @@ import static spark.Spark.*;
 public class MemberController extends BaseController
 {
     private final MemberHelper memberHelper;
+    private final PenaltyRepository penaltyRepository;
 
     public MemberController()
     {
         initRoutes();
         this.memberHelper = new MemberHelper();
+        this.penaltyRepository = new PenaltyRepository();
     }
 
     private void initRoutes()
@@ -117,62 +119,39 @@ public class MemberController extends BaseController
         return null;
     }
 
-    private List<Map<String, Object>> getAllRole()
-    {
-        List<Role> roles_list = Guardian.getGuild().getRoles();
-        List<Map<String, Object>> roleData = roles_list.stream().map(role ->
-        {
-            Map<String, Object> data = new HashMap<>();
-            data.put("id", role.getId());
-            data.put("name", role.getName());
-            data.put("color", role.getColor() != null ? role.getColor().getRGB() : null);
-            return data;
-        }).collect(Collectors.toList());
-
-        return roleData;
-    }
-
     private Object memberPenalty(Request req, Response res)
     {
         String memberId = req.params("id");
         String penaltyType = req.queryParams("penalty_type");
+        int penaltyId = Integer.parseInt(req.queryParams("penalty_id"));
         String penaltyAction = req.queryParams("action");
+
+        if (!"mute".equalsIgnoreCase(penaltyType)) redirectWithFlash(req, res, "error", "Type de pénalité invalide", "/member/profil/" + memberId);
+
         Guild guild = Guardian.getGuild();
-
-        if (!"mute".equalsIgnoreCase(penaltyType)) {
-            return null;
-        }
-
         Member member = guild.retrieveMemberById(memberId).complete();
-        if (member == null) {
-            setFlash(req, "error", "Membre introuvable !");
-            res.redirect("/member/profil/" + memberId);
-            return false;
-        }
+
+        if (member == null) redirectWithFlash(req, res, "error", "Membre introuvable", "/member/profil/" + memberId);
 
         Role mutedRole = guild.getRolesByName("Muted", true).stream().findFirst().orElse(null);
-        if (mutedRole == null) {
-            setFlash(req, "error", "Rôle 'Muted' introuvable !");
-            res.redirect("/member/profil/" + memberId);
-            return false;
+        if (mutedRole == null) redirectWithFlash(req, res, "error", "Rôle 'Muted' introuvable !", "/member/profil/" + memberId);
+
+        boolean applyMute = "1".equals(penaltyAction);
+        boolean hasMuted = member.getRoles().contains(mutedRole);
+
+        if (applyMute && !hasMuted) {
+            guild.addRoleToMember(member, mutedRole).queue();
+            redirectWithFlash(req, res, "success", "Le rôle 'Muted' a été appliqué au membre.", "/member/profil/" + memberId);
         }
 
-        if ("1".equals(penaltyAction)) {
-            if (!member.getRoles().contains(mutedRole)) {
-                guild.addRoleToMember(member, mutedRole).queue();
-            }
-            setFlash(req, "success", "Le rôle 'Muted' a été appliqué au membre.");
-        } else {
-            if (member.getRoles().contains(mutedRole)) {
-                guild.removeRoleFromMember(member, mutedRole).queue();
-            }
-            setFlash(req, "success", "Le rôle 'Muted' a été retiré du membre.");
+        if (!applyMute && hasMuted) {
+            guild.removeRoleFromMember(member, mutedRole).queue();
+            redirectWithFlash(req, res, "success", "Le rôle 'Muted' a été retiré du membre.", "/member/profil/" + memberId);
         }
 
-        res.redirect("/member/profil/" + memberId);
+        DB.withConnection(() -> penaltyRepository.updateById(penaltyId, "processed"));
+
+        redirectWithFlash(req, res, "success", "Aucun changement à appliquer.", "/member/profil/" + memberId);
         return true;
     }
-
-
-
 }

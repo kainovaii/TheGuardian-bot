@@ -119,7 +119,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="text-secondary">${penalty.timestamp}</div>
+                                            <div class="text-secondary">
+                                                <div class="list-inline list-inline-dots">
+                                                    <div class="list-inline-item">
+                                                        Date: <strong>${penalty.timestamp}</strong>
+                                                    </div>
+                                                    <div class="list-inline-item">
+                                                        Status: <strong>${penalty.status}</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-auto align-self-center">
                                             <a href="/member/profil/${penalty.member_id}" class="text-secondary">

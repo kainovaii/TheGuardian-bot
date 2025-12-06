@@ -79,7 +79,7 @@ public class WordScannerListener extends ListenerAdapter
                                 data.channel.getGuild().addRoleToMember(data.member, mutedRole).queue(
                                     success -> {
                                         PenaltyRepository penaltyRepository = new PenaltyRepository();
-                                        penaltyRepository.create(data.member.getId(), data.member.getEffectiveName(), "Toxicity score +0.7", "Guardian", data.timestamp, "Mute", "pending", toxicity);
+                                        penaltyRepository.create(data.member.getId(), data.member.getEffectiveName(), "Toxicity score +" + config.getPenaltyThreshold(), "Guardian", data.timestamp, "Mute", "pending", toxicity);
                                     },
                                     error -> error.printStackTrace()
                                 );
