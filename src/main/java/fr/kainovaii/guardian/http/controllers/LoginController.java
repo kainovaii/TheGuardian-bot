@@ -37,7 +37,7 @@ public class LoginController extends BaseController
         if (!isLogged(req)) {
             return render(req,"account/login.html", Map.of("title", "Bot"));
         } else {
-            res.redirect("/");
+            redirectWithFlash(req,  res, "error", "Your are already logged in", "/");
         }
         return null;
     }
@@ -49,22 +49,20 @@ public class LoginController extends BaseController
         Session session = req.session(true);
 
         DB.withConnection(() -> {
-            if (UserRepository.userExist(usernameParam))
-            {
-                User user = userRepository.findByUsername(usernameParam);
+            if (!UserRepository.userExist(usernameParam)) redirectWithFlash(req,  res, "error", "User not found", "/login");
 
-                if (BCrypt.checkpw(passwordParam, user.getPassword()))
-                {
-                    session.attribute("logged", true);
-                    session.attribute("username", usernameParam);
-                    session.attribute("role", user.getRole());
-                    res.redirect("/");
-                    return null;
-                }
+            User user = userRepository.findByUsername(usernameParam);
+
+            if (BCrypt.checkpw(passwordParam, user.getPassword()))
+            {
+                session.attribute("logged", true);
+                session.attribute("username", usernameParam);
+                session.attribute("role", user.getRole());
+                res.redirect("/");
+                return null;
             }
 
-            setFlash(req, "error", "Incorrect login !");
-            res.redirect("/login");
+            redirectWithFlash(req,  res, "error", "Incorect login", "/login");
 
             return null;
         });
