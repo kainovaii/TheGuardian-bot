@@ -1,1 +1,1 @@
-WebComponent('user-details', 'user_details');
+WebComponent('test-card', 'test_card');

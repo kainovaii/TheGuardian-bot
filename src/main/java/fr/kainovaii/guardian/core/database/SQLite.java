@@ -32,7 +32,6 @@ public class SQLite
             try {
                 File dbFile = new File(dataFolder, "data.db");
                 if (!dbFile.getParentFile().exists()) dbFile.getParentFile().mkdirs();
-
                 String url = "jdbc:sqlite:" + dbFile.getAbsolutePath();
                 Base.open("org.sqlite.JDBC", url, "", "");
                 logger.info("SQLite connection open for the thread : " + Thread.currentThread().getName());
