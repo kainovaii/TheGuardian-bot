@@ -4,66 +4,10 @@
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
         </div>
         <div class="row">
-            <div  class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Members</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${members_count}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-newspaper fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div  class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">New members this week</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${members_week_count}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-newspaper fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div  class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Penalties</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${penalties_count}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-newspaper fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div  class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Alerts</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${alerts_count}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-newspaper fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'Total members', content: '${members_count}'}"></stat-card>
+            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'New members this week', content: '${members_week_count}'}"></stat-card>
+            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'Total Penalties', content: '${penalties_count}'}"></stat-card>
+            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'Total Alerts', content: '${alerts_count}'}"></stat-card>
         </div>
         <div class="row">
             <div class="col-md-6">
