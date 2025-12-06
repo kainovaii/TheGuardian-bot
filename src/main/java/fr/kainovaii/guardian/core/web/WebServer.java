@@ -11,7 +11,7 @@ public class WebServer
     public void start()
     {
         port(Guardian.getWebPort());
-        staticFiles.location("/assets");
+        staticFiles.location("/");
         before((req, res) -> { GlobalAdviceController.applyGlobals(req); });
         ControllerLoader.loadControllers();
     }
