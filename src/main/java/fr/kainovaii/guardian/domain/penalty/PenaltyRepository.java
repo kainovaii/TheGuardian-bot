@@ -1,6 +1,7 @@
 package fr.kainovaii.guardian.domain.penalty;
 
 import fr.kainovaii.guardian.core.database.DB;
+import fr.kainovaii.guardian.domain.user.User;
 import org.javalite.activejdbc.LazyList;
 
 public class PenaltyRepository
@@ -23,7 +24,15 @@ public class PenaltyRepository
         });
     }
 
+    public boolean updateById(int id, String status)
+    {
+        Penalty penalty = this.findById(id);
+        penalty.set("status", status);
+        return penalty.saveIt();
+    }
+
     public LazyList<Penalty> getAll() { return Penalty.findAll(); }
 
     public LazyList<Penalty> findByMember(String memberId) { return Penalty.where("member_id = ?", memberId); }
+    public Penalty findById(int id) { return Penalty.findFirst("id = ?", id); }
 }
