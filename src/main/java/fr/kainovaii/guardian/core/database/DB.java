@@ -9,13 +9,15 @@ public class DB
 {
     public DB() { connect(); }
 
-    public static void connect() {
+    public static void connect()
+    {
         if (!Base.hasConnection()) {
             SQLite.getInstance(Guardian.LOGGER).connectDatabaseForCurrentThread();
         }
     }
 
-    public static <T> T withConnection(Callable<T> task) {
+    public static <T> T withConnection(Callable<T> task)
+    {
         if (!Base.hasConnection()) {
             SQLite.getInstance(Guardian.LOGGER).connectDatabaseForCurrentThread();
         }
