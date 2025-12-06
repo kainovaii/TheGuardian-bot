@@ -96,7 +96,6 @@ public class MemberController extends BaseController
     private Object memberKick(Request req, Response res)
     {
         requireLogin(req, res);
-        Session session = req.session(true);
         String memberId = req.params("id");
         Guild guild = Guardian.getGuild();
         if (guild == null) return "Guild introuvable !";
@@ -106,15 +105,14 @@ public class MemberController extends BaseController
         String formatted = now.format(formatter);
 
         try {
-            Member member = guild.retrieveMemberById(memberId).complete(); // Bloquant
+            Member member = guild.retrieveMemberById(memberId).complete();
             if (member == null) setFlash(req, "error", "Membre introuvable !");
             member.kick().complete();
-            //PenaltyManager.addPenalty(new Penalty(UUID.randomUUID().toString(), member.getId(), member.getEffectiveName(), "Kick by admin", session.attribute("username"), formatted, "Kick", "pending", 0.90 ));
-            setFlash(req, "success", "Membre kické : " + member.getUser().getName());
-            res.redirect("/member");
+            penaltyRepository.create(member.getId(), member.getEffectiveName(), "Kick by admin", "Guardian", formatted, "Mute", "processed", 0.90);
+
+            redirectWithFlash(req, res, "success", "Membre kické : " + member.getUser().getName(), "/member");
         } catch (Exception e) {
-            setFlash(req, "error", e.getMessage());
-            res.redirect("/member");
+            redirectWithFlash(req, res, "error", e.getMessage(), "/member");
         }
         return null;
     }
