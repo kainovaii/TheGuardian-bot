@@ -35,7 +35,6 @@ public class PebbleTemplateEngine extends TemplateEngine
         }
     }
 
-    // 🔹 méthode supplémentaire pour le BaseController
     public String render(String templateName, Map<String, Object> model) {
         try {
             var template = engine.getTemplate(templateName);

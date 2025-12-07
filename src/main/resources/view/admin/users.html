@@ -1,0 +1,207 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-12">
+        <div class="card mt-4">
+            <div class="card-table">
+                <div class="card-header">
+                    <div class="row w-full">
+                        <div class="col">
+                            <h3 class="card-title mb-0">Users</h3>
+                        </div>
+                        <div class="col-md-auto col-sm-12">
+                            <div class="ms-auto d-flex flex-wrap btn-list">
+                                <div class="input-group input-group-flat w-auto">
+                                <span class="input-group-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M21 21l-6 -6"/></svg>
+                                </span>
+                                    <input id="advanced-table-search" type="text" class="form-control" autocomplete="off" />
+                                </div>
+                                <a href="" class="btn btn-0">New users</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="advanced-table">
+                    <div class="table-responsive">
+                        <table class="table table-vcenter table-selectable">
+                            <thead>
+                            <tr>
+                                <th class="w-1"></th>
+                                <th>
+                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-name"><strong>#</strong></button>
+                                </th>
+                                <th>
+                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-city">Username</button>
+                                </th>
+                                <th>
+                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-status">Email</button>
+                                </th>
+                                <th>
+                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-date">Role</button>
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-tbody">
+                            {% for user in users %}
+                            <tr>
+                                <td>
+                                    <input class="form-check-input m-0 align-middle table-selectable-check" type="checkbox" aria-label="Select invoice" value="true" />
+                                </td>
+                                <td class="sort-name">
+                                    <span>{{ user.id }}</span>
+                                </td>
+                                <td class="sort-city">
+                                    <span>{{ user.username }}</span>
+                                </td>
+                                <td class="sort-status">
+                                    <span>NaN {{ user.email }}</span>
+                                </td>
+                                <td class="sort-date">
+                                    <span>{{ user.role }}</span>
+                                </td>
+                                <td class="text-end">
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown">Actions</button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="">Edit</a>
+                                            <a class="dropdown-item" href="">Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer d-flex align-items-center">
+                        <div class="dropdown">
+                            <a class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                                <span id="page-count" class="me-1">20</span>
+                                <span>records</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" onclick="setPageListItems(event)" data-value="10">10 records</a>
+                                <a class="dropdown-item" onclick="setPageListItems(event)" data-value="20">20 records</a>
+                                <a class="dropdown-item" onclick="setPageListItems(event)" data-value="50">50 records</a>
+                                <a class="dropdown-item" onclick="setPageListItems(event)" data-value="100">100 records</a>
+                            </div>
+                        </div>
+                        <ul class="pagination m-0 ms-auto">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                    <!-- Download SVG icon from http://tabler.io/icons/icon/chevron-left -->
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="icon icon-1"
+                                    >
+                                        <path d="M15 6l-6 6l6 6" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">4</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">5</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">6</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">7</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">8</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">9</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">10</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">
+                                    <!-- Download SVG icon from http://tabler.io/icons/icon/chevron-right -->
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="icon icon-1"
+                                    >
+                                        <path d="M9 6l6 6l-6 6" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const advancedTable = {
+                headers: [
+                    { "data-sort": "sort-name", name: "Username" },
+                    { "data-sort": "sort-city", name: "Email" },
+                    { "data-sort": "sort-status", name: "Role" },
+                ],
+            };
+            const setPageListItems = (e) => {
+                window.tabler_list["advanced-table"].page = parseInt(e.target.dataset.value);
+                window.tabler_list["advanced-table"].update();
+                document.querySelector("#page-count").innerHTML = e.target.dataset.value;
+            };
+            window.tabler_list = window.tabler_list || {};
+            document.addEventListener("DOMContentLoaded", function () {
+                const list = (window.tabler_list["advanced-table"] = new List("advanced-table", {
+                    sortClass: "table-sort",
+                    listClass: "table-tbody",
+                    page: parseInt("20"),
+                    pagination: {
+                        item: (value) => {
+                            return `<li class="page-item"><a class="page-link cursor-pointer">${value.page}</a></li>`;
+                        },
+                        innerWindow: 1,
+                        outerWindow: 1,
+                        left: 0,
+                        right: 0,
+                    },
+                    valueNames: advancedTable.headers.map((header) => header["data-sort"]),
+                }));
+                const searchInput = document.querySelector("#advanced-table-search");
+                if (searchInput) {
+                    searchInput.addEventListener("input", () => {
+                        list.search(searchInput.value);
+                    });
+                }
+            });
+        </script>
+    </div>
+</div>
+{% endblock %}

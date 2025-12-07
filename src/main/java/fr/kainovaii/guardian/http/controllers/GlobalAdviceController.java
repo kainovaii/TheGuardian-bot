@@ -21,12 +21,11 @@ public class GlobalAdviceController extends BaseController
 
         String username = Optional.ofNullable(session.attribute("username")).orElse("Invité").toString();
         String role = Optional.ofNullable(session.attribute("role")).orElse("").toString();
-
-        List<User> users = Collections.singletonList(new User(username, role));
+        List<User> loggedUser = Collections.singletonList(new User(username, role));
 
         setGlobal("title", "The Guardian");
-        setGlobal("isLogged", true);
-        setGlobal("users", users);
+        setGlobal("isLogged", isLogged(req));
+        setGlobal("loggedUser", loggedUser);
 
         Map<String, String> flashes = collectFlashes(req);
         setGlobal("flashes", flashes);
