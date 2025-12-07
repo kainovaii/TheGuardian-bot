@@ -8,6 +8,7 @@ import spark.Session;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class GlobalAdviceController extends BaseController
@@ -27,5 +28,7 @@ public class GlobalAdviceController extends BaseController
         setGlobal("isLogged", true);
         setGlobal("users", users);
 
+        Map<String, String> flashes = collectFlashes(req);
+        setGlobal("flashes", flashes);
     }
 }

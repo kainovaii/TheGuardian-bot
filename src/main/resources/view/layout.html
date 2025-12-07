@@ -93,13 +93,14 @@
     {% endif %}
     <div class="page-wrapper">
         <div class="container pb-0 mb-0">
-            {% if flash.success %}
-            <div class="alert alert-success mt-3">{{ flash.success }}</div>
+            {% if flashes.success %}
+            <div class="alert alert-success mt-3">{{ flashes.success }}</div>
             {% endif %}
-            {% if flash.error %}
-            <div class="alert alert-danger mt-3">{{ flash.error }}</div>
+            {% if flashes.error %}
+            <div class="alert alert-danger mt-3">{{ flashes.error }}</div>
             {% endif %}
         </div>
+
         {% block content %}
         <!-- Contenu de la page -->
         {% endblock %}
