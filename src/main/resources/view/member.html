@@ -1,20 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
 <div class="page-body">
     <div class="container-xxl">
         <div class="row">
             <div class="col-md-10">
                 <input class="search form-control mb-3" placeholder="Search..." />
                 <div class="row row-cards">
-                    {{for member in members}}
+                    {% for member in members %}
                     <div class="col-md-6 col-lg-3 member">
                         <member-card class="col-xl-3 col-md-6 mb-4" x-data="{
-                            displayName: '${member.displayName}',
-                            username: '${member.username}',
-                            avatar: '${member.avatar}',
-                            id: '${member.id}',
-                            role: '${member.topRoleName}'
+                            displayName: '{{ member.displayName }}',
+                            username: '{{ member.username }}',
+                            avatar: '{{ member.avatar }}',
+                            id: '{{ member.id }}',
+                            role: '{{ member.topRoleName }}'
                         }"></member-card>
                     </div>
-                    {{endfor}}
+                    {% endfor %}
                 </div>
             </div>
             <div class="col-md-2">
@@ -23,10 +25,10 @@
                         <h3 class="card-title">Roles</h3>
                     </div>
                     <div class="list-group list-group-flush">
-                        <a  href="/member" class="list-group-item list-group-item-action">All</a>
-                        {{for role in roles}}
-                        <a  href="/member/${role.name}" class="list-group-item list-group-item-action">${role.name}</a>
-                        {{endfor}}
+                        <a href="/member" class="list-group-item list-group-item-action">All</a>
+                        {% for role in roles %}
+                        <a href="/member/{{ role.name }}" class="list-group-item list-group-item-action">{{ role.name }}</a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -55,3 +57,4 @@
         });
     </script>
 </div>
+{% endblock %}

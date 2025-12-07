@@ -36,7 +36,7 @@ public class AccountController extends BaseController
     private Object settings(Request req, Response res)
     {
         requireLogin(req, res);
-        return render(req,"account/settings.html", Map.of());
+        return render("account/settings.html", Map.of());
     }
 
     private Object settings_back(Request req, Response res)

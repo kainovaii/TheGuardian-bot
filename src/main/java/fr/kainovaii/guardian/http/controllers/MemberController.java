@@ -53,7 +53,7 @@ public class MemberController extends BaseController
         List<Map<String, Object>> memberData = memberHelper.getAllMembers();
         List<Map<String, Object>> roleData = memberHelper.getAllRoles();
 
-        return render(req, "member.html", Map.of(
+        return render("member.html", Map.of(
             "members", memberData,
             "roles", roleData
         ));
@@ -67,7 +67,7 @@ public class MemberController extends BaseController
         String roleName = req.params("role");
         List<Map<String, Object>> filtered = memberHelper.getMembersByRole(roleName);
 
-        return render(req, "member.html", Map.of(
+        return render("member.html", Map.of(
             "members", filtered,
             "roles", memberHelper.getAllRoles()
         ));
@@ -86,7 +86,7 @@ public class MemberController extends BaseController
         List<Alert> memberAlerts = memberHelper.getMemberAlerts(memberId);
         List<Penalty> memberPenalties = memberHelper.getMemberPenalties(memberId);
 
-        return render(req, "member_profile.html", Map.of(
+        return render("member_profile.html", Map.of(
             "member", memberData,
             "alerts", memberAlerts,
             "penalties", memberPenalties

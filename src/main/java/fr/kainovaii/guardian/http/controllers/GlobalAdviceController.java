@@ -1,7 +1,8 @@
 package fr.kainovaii.guardian.http.controllers;
 
 import fr.kainovaii.guardian.core.web.controller.BaseController;
-import fr.kainovaii.guardian.core.web.WebRenderer;
+import io.pebbletemplates.pebble.PebbleEngine;
+import io.pebbletemplates.pebble.loader.FileLoader;
 import spark.Request;
 import spark.Session;
 
@@ -22,8 +23,9 @@ public class GlobalAdviceController extends BaseController
 
         List<User> users = Collections.singletonList(new User(username, role));
 
-        WebRenderer.setGlobal("users", users);
-        WebRenderer.setGlobal("isLogged", isLogged(req));
-        WebRenderer.setGlobal("title", "The Guardian");
+        setGlobal("title", "The Guardian");
+        setGlobal("isLogged", true);
+        setGlobal("users", users);
+
     }
 }

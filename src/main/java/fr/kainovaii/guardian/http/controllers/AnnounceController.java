@@ -20,7 +20,7 @@ public class AnnounceController extends BaseController
     private Object homepage(Request req, Response res)
     {
         requireLogin(req, res);
-        return render(req,"form.html", Map.of());
+        return render("form.html", Map.of());
     }
 
     private Object announce(Request req, Response res)

@@ -50,7 +50,7 @@ public class HomeController extends BaseController
         int penaltiesCount = DB.withConnection(() -> penaltyRepository.getAll().size());
         int alertsCount = DB.withConnection(() -> alertRepository.getAll().size());
 
-        return render(req, "home.html", Map.of(
+        return render("home.html", Map.of(
             "members_count", membersCount,
             "members_week_count", membersThisWeek,
             "latest_members", latestMembers,
