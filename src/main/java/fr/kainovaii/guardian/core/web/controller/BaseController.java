@@ -52,15 +52,15 @@ public class BaseController
         return flashes;
     }
 
-    protected void redirectWithFlash(Request req, Response res, String type, String message, String location)
+    protected Object redirectWithFlash(Request req, Response res, String type, String message, String location)
     {
         setFlash(req, type, message);
         res.redirect(location);
+        return null;
     }
 
     protected String render(String template, Map<String, Object> model) {
         try {
-            // merge des globals + model local
             Map<String, Object> merged = new HashMap<>(TemplateManager.getGlobals());
             if (model != null) merged.putAll(model);
 
