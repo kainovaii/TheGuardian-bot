@@ -1,6 +1,7 @@
 package fr.kainovaii.guardian.core.web.controller;
 
-import fr.kainovaii.guardian.core.web.WebRenderer;
+import fr.kainovaii.guardian.core.web.template.TemplateManager;
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Session;
@@ -10,7 +11,7 @@ import java.util.Map;
 
 import static spark.Spark.halt;
 
-public class BaseController extends WebRenderer
+public class BaseController
 {
     protected static boolean isLogged(Request req)
     {
@@ -55,5 +56,25 @@ public class BaseController extends WebRenderer
     {
         setFlash(req, type, message);
         res.redirect(location);
+    }
+
+    protected String render(String template, Map<String, Object> model) {
+        try {
+            // merge des globals + model local
+            Map<String, Object> merged = new HashMap<>(TemplateManager.getGlobals());
+            if (model != null) merged.putAll(model);
+
+            return TemplateManager.get().render(template, merged);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected String render(String template) {
+        return render(template, Map.of());
+    }
+
+    protected static void setGlobal(String key, Object value) {
+        TemplateManager.setGlobal(key, value);
     }
 }

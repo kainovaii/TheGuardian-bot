@@ -44,8 +44,8 @@ public class Alert extends Model
         set("channel", channel);
     }
 
-    public Long getTimestamp() {
-        return getLong("timestamp");
+    public String getTimestamp() {
+        return getString("timestamp");
     }
 
     public void setTimestamp(Long timestamp) {

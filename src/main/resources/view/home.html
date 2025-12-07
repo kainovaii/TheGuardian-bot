@@ -1,13 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
 <div class="page-body">
     <div class="container-xxl">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
         </div>
         <div class="row">
-            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'Total members', content: '${members_count}'}"></stat-card>
-            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'New members this week', content: '${members_week_count}'}"></stat-card>
-            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'Total Penalties', content: '${penalties_count}'}"></stat-card>
-            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'Total Alerts', content: '${alerts_count}'}"></stat-card>
+            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'Total members', content: '{{ members_count }}'}"></stat-card>
+            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'New members this week', content: '{{ members_week_count }}'}"></stat-card>
+            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'Total Penalties', content: '{{ penalties_count }}'}"></stat-card>
+            <stat-card class="col-xl-3 col-md-6 mb-4" x-data="{name: 'Total Alerts', content: '{{ alerts_count }}'}"></stat-card>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -18,19 +20,19 @@
                         </div>
                         <div class="card-body card-body-scrollable card-body-scrollable-shadow">
                             <div class="divide-y">
-                                {{for member in latest_members}}
+                                {% for member in latest_members %}
                                 <div>
                                     <div class="row">
                                         <div class="col-auto">
-                                            <span class="avatar avatar-1" style="background-image: url(${member.avatar})"></span>
+                                            <span class="avatar avatar-1" style="background-image: url({{ member.avatar }})"></span>
                                         </div>
                                         <div class="col">
-                                            <div class="text-truncate"><strong>${member.displayName}</strong></div>
-                                            <div class="text-secondary">${member.joinDate}</div>
+                                            <div class="text-truncate"><strong>{{ member.displayName }}</strong></div>
+                                            <div class="text-secondary">{{ member.joinDate }}</div>
                                         </div>
                                     </div>
                                 </div>
-                                {{endfor}}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -44,7 +46,7 @@
                         </div>
                         <div class="card-body card-body-scrollable card-body-scrollable-shadow">
                             <div class="divide-y">
-                                {{for penalty in penalties}}
+                                {% for penalty in penalties %}
                                 <div>
                                     <div class="row">
                                         <div class="col-auto">
@@ -56,32 +58,32 @@
                                             <div class="text-truncate">
                                                 <div class="list-inline list-inline-dots">
                                                     <div class="list-inline-item">
-                                                        Reason: <strong>${penalty.reason}</strong>
+                                                        Reason: <strong>{{ penalty.reason }}</strong>
                                                     </div>
                                                     <div class="list-inline-item">
-                                                        Member: <strong>${penalty.member_name}</strong>
+                                                        Member: <strong>{{ penalty.member_name }}</strong>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="text-secondary">
                                                 <div class="list-inline list-inline-dots">
                                                     <div class="list-inline-item">
-                                                        Date: <strong>${penalty.timestamp}</strong>
+                                                        Date: <strong>{{ penalty.timestamp }}</strong>
                                                     </div>
                                                     <div class="list-inline-item">
-                                                        Status: <strong>${penalty.status}</strong>
+                                                        Status: <strong>{{ penalty.status }}</strong>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-auto align-self-center">
-                                            <a href="/member/profil/${penalty.member_id}" class="text-secondary">
+                                            <a href="/member/profil/{{ penalty.member_id }}" class="text-secondary">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                {{endfor}}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -93,7 +95,7 @@
                         </div>
                         <div class="card-body card-body-scrollable card-body-scrollable-shadow">
                             <div class="divide-y">
-                                {{for alert in alerts}}
+                                {% for alert in alerts %}
                                 <div>
                                     <div class="row">
                                         <div class="col-auto">
@@ -105,21 +107,21 @@
                                             <div class="text-truncate">
                                                 <div class="list-inline list-inline-dots">
                                                     <div class="list-inline-item">
-                                                        In: <strong>${alert.channel}</strong>
+                                                        In: <strong>{{ alert.channel }}</strong>
                                                     </div>
                                                     <div class="list-inline-item">
-                                                        Member: <strong>${alert.member_name}</strong>
+                                                        Member: <strong>{{ alert.member_name }}</strong>
                                                     </div>
                                                     <div class="list-inline-item">
-                                                        Level: <strong>${alert.toxicity}</strong>
+                                                        Level: <strong>{{ alert.toxicity }}</strong>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="text-secondary">${alert.timestamp}</div>
+                                            <div class="text-secondary">{{ alert.timestamp }}</div>
                                         </div>
                                     </div>
                                 </div>
-                                {{endfor}}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -128,3 +130,4 @@
         </div>
     </div>
 </div>
+{% endblock %}

@@ -1,28 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
 <!-- BEGIN PAGE HEADER -->
 <div class="page-header">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-auto">
-                <span class="avatar avatar-xl" style="background-image: url('${member.avatar}')"> </span>
+                <span class="avatar avatar-xl" style="background-image: url('{{ member.avatar }}')"> </span>
             </div>
             <div class="col">
-                <h1 class="fw-bold m-0">${member.displayName}</h1>
+                <h1 class="fw-bold m-0">{{ member.displayName }}</h1>
                 <div class="my-2">
-                    ID: <strong>${member.id}</strong> | Username: <strong>${member.username}#${member.discriminator}</strong>
+                    ID: <strong>{{ member.id }}</strong> | Username: <strong>{{ member.username }}#{{ member.discriminator }}</strong>
                 </div>
                 <div class="list-inline list-inline-dots text-secondary">
                     <div class="list-inline-item">
-                        Roles: <strong>${member.topRoleName}</strong>
+                        Roles: <strong>{{ member.topRoleName }}</strong>
                     </div>
                     <div class="list-inline-item">
-                        Bot: <strong>${member.isBot}</strong>
+                        Bot: <strong>{{ member.isBot }}</strong>
                     </div>
                 </div>
             </div>
             <div class="col-auto ms-auto">
                 <div class="btn-list">
                     <a data-bs-toggle="modal" data-bs-target="#kickMemberModal" type="submit" class="btn btn-warning btn-3" style="display:inline">Kick</a>
-                    <form action="/member/${member.id}/ban" method="get" style="display:inline">
+                    <form action="/member/{{ member.id }}/ban" method="get" style="display:inline">
                         <button type="submit" class="btn btn-danger btn-3">Ban</button>
                     </form>
                 </div>
@@ -47,7 +49,7 @@
                                 <a href="#tabs-penalty" class="nav-link" data-bs-toggle="tab" aria-selected="true" role="tab">Penalties</a>
                             </li>
                             <li class="nav-item ms-auto" role="presentation">
-                                <a href="#tabs-settings-1" class="nav-link" title="Settings" data-bs-toggle="tab" aria-selected="false" role="tab" tabindex="-1"><!-- Download SVG icon from http://tabler.io/icons/icon/settings -->
+                                <a href="#tabs-settings-1" class="nav-link" title="Settings" data-bs-toggle="tab" aria-selected="false" role="tab" tabindex="-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
                                         <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
                                         <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
@@ -71,15 +73,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{for alert in alerts}}
+                                        {% for alert in alerts %}
                                         <tr>
-                                            <td>${alert.channel}</td>
-                                            <td>${alert.message}</td>
-                                            <td>${alert.word}</td>
-                                            <td>${alert.timestamp}</td>
-                                            <td>${alert.toxicity}</td>
+                                            <td>{{ alert.channel }}</td>
+                                            <td>{{ alert.message }}</td>
+                                            <td>{{ alert.word }}</td>
+                                            <td>{{ alert.timestamp }}</td>
+                                            <td>{{ alert.toxicity }}</td>
                                         </tr>
-                                        {{endfor}}
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -98,18 +100,18 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{for penalty in penalties}}
+                                        {% for penalty in penalties %}
                                         <tr>
-                                            <td>${penalty.reason}</td>
-                                            <td>${penalty.author}</td>
-                                            <td>${penalty.type}</td>
-                                            <td>${penalty.timestamp}</td>
-                                            <td>${penalty.toxicity}</td>
+                                            <td>{{ penalty.reason }}</td>
+                                            <td>{{ penalty.author }}</td>
+                                            <td>{{ penalty.type }}</td>
+                                            <td>{{ penalty.timestamp }}</td>
+                                            <td>{{ penalty.toxicity }}</td>
                                             <td>
-                                                <a data-bs-toggle="modal" data-bs-target="#penaltyMemberModal-${penalty.id}" href="#">View</a>
+                                                <a data-bs-toggle="modal" data-bs-target="#penaltyMemberModal-{{ penalty.id }}" href="#">View</a>
                                             </td>
                                         </tr>
-                                        {{endfor}}
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -160,8 +162,8 @@
                                 <a href="javascript:void(0)" class="btn w-100" data-bs-dismiss="modal">Cancel</a>
                             </div>
                             <div class="col">
-                                <a href="/member/${member.id}/kick" class="btn btn-danger w-100">
-                                    Yes (Kick: ${member.displayName})
+                                <a href="/member/{{ member.id }}/kick" class="btn btn-danger w-100">
+                                    Yes (Kick: {{ member.displayName }})
                                 </a>
                             </div>
                         </div>
@@ -171,58 +173,60 @@
         </div>
     </div>
     <!-- END KICK MODAL -->
+
     <!-- BEGIN PENALTY MODAL  -->
-    {{for penalty in penalties}}
-    <div class="modal" id="penaltyMemberModal-${penalty.id}" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
+    {% for penalty in penalties %}
+    <div class="modal" id="penaltyMemberModal-{{ penalty.id }}" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form action="/member/${member.id}/penalties" method="POST">
-                <input type="hidden" name="penalty_type" value="${penalty.type}">
-                <input type="hidden" name="penalty_id" value="${penalty.id}">
-                <div class="modal-header">
-                    <h5 class="modal-title">Penalty <strong>(${penalty.id})</strong></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-vcenter card-table table-striped">
-                            <thead>
-                            <tr>
-                                <th>Reason</th>
-                                <th>Author</th>
-                                <th>Type</th>
-                                <th>Date</th>
-                                <th>Toxicity</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>${penalty.reason}</td>
-                                <td>${penalty.author}</td>
-                                <td>${penalty.type}</td>
-                                <td>${penalty.timestamp}</td>
-                                <td>${penalty.toxicity}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                <form action="/member/{{ member.id }}/penalties" method="POST">
+                    <input type="hidden" name="penalty_type" value="{{ penalty.type }}">
+                    <input type="hidden" name="penalty_id" value="{{ penalty.id }}">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Penalty <strong>({{ penalty.id }})</strong></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="form-floating mt-2">
-                        <select name="action" class="form-select" id="floatingSelect">
-                            <option value="1">Approved</option>
-                            <option value="0">Cancel</option>
-                        </select>
-                        <label for="floatingSelect">Action</label>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table table-vcenter card-table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Reason</th>
+                                    <th>Author</th>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                    <th>Toxicity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{{ penalty.reason }}</td>
+                                    <td>{{ penalty.author }}</td>
+                                    <td>{{ penalty.type }}</td>
+                                    <td>{{ penalty.timestamp }}</td>
+                                    <td>{{ penalty.toxicity }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-floating mt-2">
+                            <select name="action" class="form-select" id="floatingSelect">
+                                <option value="1">Approved</option>
+                                <option value="0">Cancel</option>
+                            </select>
+                            <label for="floatingSelect">Action</label>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Save changes</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Save changes</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-    {{endfor}}
+    {% endfor %}
     <!-- END PENALTY MODAL -->
 </div>
 <!-- END PAGE BODY -->
+{% endblock %}

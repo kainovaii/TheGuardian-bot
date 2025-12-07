@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>${title}</title>
+    <title>{{ title }}</title>
     <link rel="icon" href="/assets/img/logo_simple.png" type="image/x-icon" />
     <link href="/assets/css/tabler.css" rel="stylesheet" />
     <style>@import url("https://rsms.me/inter/inter.css");</style>
@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="page">
-    {{if isLogged}}
+    {% if isLogged %}
     <header class="navbar navbar-expand-md d-print-none">
         <div class="container-xl">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@
                         </a>
                     </div>
                 </div>
-                {{for user in users}}
+                {% for user in users %}
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link d-flex lh-1 p-0" data-bs-toggle="dropdown" aria-label="Open user menu" style="padding-right: 7px !important;">
                         <span class="avatar avatar-2 bg-pink-lt">
@@ -75,9 +75,9 @@
                             </svg>
                         </span>
                         <div class="d-none d-xl-block ps-2">
-                            <div><span>${user.username}</span></div>
+                            <div><span>{{ user.username }}</span></div>
                             <div class="mt-1 small">
-                                <span>${user.role}</span>
+                                <span>{{ user.role }}</span>
                             </div>
                         </div>
                     </a>
@@ -86,21 +86,23 @@
                         <a href="/logout" class="dropdown-item">Logout</a>
                     </div>
                 </div>
-                {{endfor}}
+                {% endfor %}
             </div>
         </div>
     </header>
-    {{endif}}
+    {% endif %}
     <div class="page-wrapper">
         <div class="container pb-0 mb-0">
-            {{if flash.success}}
-            <div class="alert alert-success mt-3">${flash.success}</div>
-            {{endif}}
-            {{if flash.error}}
-            <div class="alert alert-danger mt-3">${flash.error}</div>
-            {{endif}}
+            {% if flash.success %}
+            <div class="alert alert-success mt-3">{{ flash.success }}</div>
+            {% endif %}
+            {% if flash.error %}
+            <div class="alert alert-danger mt-3">{{ flash.error }}</div>
+            {% endif %}
         </div>
-        {{content}}
+        {% block content %}
+        <!-- Contenu de la page -->
+        {% endblock %}
         <footer class="footer footer-transparent d-print-none">
             <div class="container-xl">
                 <div class="row text-center align-items-center flex-row-reverse">

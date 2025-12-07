@@ -38,8 +38,8 @@ public class Penalty extends Model
         set("author", author);
     }
 
-    public Long getTimestamp() {
-        return getLong("timestamp");
+    public String getTimestamp() {
+        return getString("timestamp");
     }
 
     public void setTimestamp(Long timestamp) {
